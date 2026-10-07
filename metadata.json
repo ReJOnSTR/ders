@@ -1,0 +1,6 @@
+{
+  "name": "Föy Evi — Test, Yazılı, Deneme ve Soru Bankası Stüdyosu",
+  "description": "Kendi sorularınız, logonuz ve kurumsal kimliğinizle yayınevi kalitesinde yaprak test, yazılı sınav, deneme ve soru bankası hazırlama programı.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

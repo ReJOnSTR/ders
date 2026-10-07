@@ -1,0 +1,232 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "katex/dist/katex.min.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-kagit: #f5f3ec;
+    --paper-shadow: 0 20px 40px -15px rgba(27, 36, 50, 0.12), 0 0 0 1px rgba(27, 36, 50, 0.06);
+    --card-shadow: 0 2px 8px -2px rgba(27, 36, 50, 0.06), 0 0 0 1px rgba(27, 36, 50, 0.05);
+  }
+}
+
+body {
+  background-color: var(--bg-kagit);
+  color: #1c1917;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Custom scrollbar for modern studio */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d6d3d1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a29e;
+}
+
+/* Paper dimensions on Screen & Print - Strictly fixed standard dimensions */
+.paper-dim-A4-portrait {
+  width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-width: 210mm;
+  max-height: 297mm;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.paper-dim-A4-landscape {
+  width: 297mm;
+  height: 210mm;
+  min-height: 210mm;
+  max-width: 297mm;
+  max-height: 210mm;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.paper-dim-A3-portrait {
+  width: 297mm;
+  height: 420mm;
+  min-height: 420mm;
+  max-width: 297mm;
+  max-height: 420mm;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.paper-dim-A3-landscape {
+  width: 420mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-width: 420mm;
+  max-height: 297mm;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.paper-dim-B5-portrait {
+  width: 176mm;
+  height: 250mm;
+  min-height: 250mm;
+  max-width: 176mm;
+  max-height: 250mm;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.paper-dim-Letter-portrait {
+  width: 215.9mm;
+  height: 279.4mm;
+  min-height: 279.4mm;
+  max-width: 215.9mm;
+  max-height: 279.4mm;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.paper-dim-Letter-landscape {
+  width: 279.4mm;
+  height: 215.9mm;
+  min-height: 215.9mm;
+  max-width: 279.4mm;
+  max-height: 215.9mm;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Print Specific Rules for True 1:1 Vector Output */
+@media print {
+  @page {
+    size: auto;
+    margin: 0mm;
+  }
+  
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 10pt;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Unclog outer ancestor containers only so paper sheet internal flexbox is preserved */
+  html, body, #__next, main {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  .no-print, header, nav, aside, button {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .document-zoom-wrapper {
+    zoom: 1 !important;
+    transform: none !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .page-sheet-container {
+    box-shadow: none !important;
+    margin: 0 auto !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  .paper-dim-A4-portrait {
+    width: 210mm !important;
+    min-width: 210mm !important;
+    max-width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+  }
+  .paper-dim-A4-landscape {
+    width: 297mm !important;
+    min-width: 297mm !important;
+    max-width: 297mm !important;
+    height: 210mm !important;
+    min-height: 210mm !important;
+    max-height: 210mm !important;
+  }
+  .paper-dim-A3-landscape {
+    width: 420mm !important;
+    min-width: 420mm !important;
+    max-width: 420mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+  }
+  .paper-dim-A3-portrait {
+    width: 297mm !important;
+    min-width: 297mm !important;
+    max-width: 297mm !important;
+    height: 420mm !important;
+    min-height: 420mm !important;
+    max-height: 420mm !important;
+  }
+  .paper-dim-B5-portrait {
+    width: 176mm !important;
+    min-width: 176mm !important;
+    max-width: 176mm !important;
+    height: 250mm !important;
+    min-height: 250mm !important;
+    max-height: 250mm !important;
+  }
+  .paper-dim-Letter-portrait {
+    width: 215.9mm !important;
+    min-width: 215.9mm !important;
+    max-width: 215.9mm !important;
+    height: 279.4mm !important;
+    min-height: 279.4mm !important;
+    max-height: 279.4mm !important;
+  }
+  .paper-dim-Letter-landscape {
+    width: 279.4mm !important;
+    min-width: 279.4mm !important;
+    max-width: 279.4mm !important;
+    height: 215.9mm !important;
+    min-height: 215.9mm !important;
+    max-height: 215.9mm !important;
+  }
+
+  .page-sheet-container:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  .avoid-page-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
+@media screen {
+  .print-only {
+    display: none !important;
+  }
+}
